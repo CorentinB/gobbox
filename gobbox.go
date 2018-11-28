@@ -54,20 +54,23 @@ func WriteLabel(img draw.Image, label string, left int, top int, color color.Col
 			Size: 12,
 			DPI:  80,
 		}),
-		Dot: fixed.P(left, top),
+		Dot: fixed.P(left+2, top+13),
 	}
 
 	// Apply text
 	d.DrawString(label)
 }
 
-// DrawBoundingBox draw a bouding box on img at x1, x2, y1, y2 colored
-// with color, and if label is specify, it also draw the label on top
-// left of the bounding box
-func DrawBoundingBox(img draw.Image, label string, x1, x2, y1, y2 int, color color.Color) {
+// DrawBoundingBox draw a bouding box on img at x1, x2, y1, y2,
+// and if label is specify, it also draw the label on top
+// left of the bounding box.
+// Color that should be used for the bounding box is specified
+// with bboxColor and the color that should be used for the
+// text is specified with labelColor
+func DrawBoundingBox(img draw.Image, label string, x1, x2, y1, y2 int, bboxColor, labelColor color.Color) {
 	// Draw the rectangle
-	DrawRect(x1, y1, x2, y2, img, color)
+	DrawRect(x1, y1, x2, y2, img, bboxColor)
 
 	// Write the label
-	WriteLabel(img, label, x1, y1, color)
+	WriteLabel(img, label, x1, y1, labelColor)
 }
