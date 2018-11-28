@@ -13,3 +13,20 @@
 `go get -u github.com/CorentinB/gobbox`
 
 # Examples
+
+Simple example of applying a bounding box and a label to an image.
+
+```go
+// Colors declarations
+red := color.RGBA{255, 0, 0, 255}
+white := color.RGBA{255, 255, 255, 255}
+
+// Create a 300x300 image initialized to all-blue
+img := image.NewRGBA(image.Rect(0, 0, 640, 480))
+blue := color.RGBA{0, 0, 255, 255}
+draw.Draw(img, img.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
+
+// Write a red bounding box with the "gobbox" label with white font
+// at coordinates 100, 250, 238, 68
+gobbox.DrawBoundingBox(img, "gobbox", 100, 250, 238, 68, red, white)
+```
